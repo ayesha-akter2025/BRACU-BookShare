@@ -1,0 +1,9 @@
+/* src/components/Footer.css */
+.footer {
+  background-color: #5d4037;
+  color: #fff8e1;
+  text-align: center;
+  padding: 20px 0;
+  font-family: 'Merriweather', serif;
+  margin-top: 60px;
+}

@@ -1,0 +1,82 @@
+.register-container {
+  max-width: 400px;
+  margin: 50px auto;
+  background: #fff8e1;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(93, 64, 55, 0.3);
+  font-family: 'Merriweather', serif;
+  color: #5d4037;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.register-form input,
+.otp-section input {
+  width: 100%;
+  padding: 12px 10px;
+  margin-bottom: 15px;
+  border: 2px solid #5d4037;
+  border-radius: 5px;
+  font-size: 16px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.register-form input:focus,
+.otp-section input:focus {
+  border-color: #ff7043;
+}
+
+.register-form button,
+.otp-section button {
+  width: 100%;
+  padding: 12px 10px;
+  background-color: #5d4037;
+  color: #fff8e1;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.register-form button:hover,
+.otp-section button:hover {
+  background-color: #bf360c;
+}
+
+.error-msg {
+  color: #d32f2f;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.success-msg {
+  color: #388e3c;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.login-link {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.login-link a {
+  color: #bf360c;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
