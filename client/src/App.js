@@ -7,10 +7,12 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import Books from "./pages/Books";
 import Layout from "./components/Layout";
+import Contact from "./pages/Contact";
+import About from "./pages/About";
+import Community from "./pages/Community";
 
 function App() {
   const [user, setUser] = useState(() => {
-    // Load user from localStorage on app load
     const savedUser = localStorage.getItem("user");
     return savedUser ? JSON.parse(savedUser) : null;
   });
@@ -31,6 +33,7 @@ function App() {
       <Routes>
         <Route element={<Layout user={user} onLogout={handleLogout} />}>
           <Route path="/" element={<Home />} />
+
           <Route
             path="/login"
             element={
@@ -39,6 +42,12 @@ function App() {
           />
           <Route path="/register" element={<Register />} />
           <Route path="/books" element={<Books />} />
+
+          {/* Publicly accessible */}
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/community" element={<Community user={user} />} />
+
           <Route
             path="/profile"
             element={

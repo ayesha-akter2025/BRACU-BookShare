@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 export default function Profile({ user }) {
   if (!user) {
     return (
@@ -21,6 +22,7 @@ export default function Profile({ user }) {
     );
   }
 
+
   return (
     <div style={{ padding: 20, maxWidth: 600, margin: "auto", fontFamily: "Arial, sans-serif" }}>
       <h2>Your Profile</h2>
@@ -30,3 +32,6 @@ export default function Profile({ user }) {
     </div>
   );
 }
+
+
+

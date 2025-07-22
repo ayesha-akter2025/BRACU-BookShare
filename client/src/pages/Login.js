@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import './Login.css';
 
+
 export default function Login({ onLogin }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -9,9 +10,11 @@ export default function Login({ onLogin }) {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
+
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+
 
     try {
       const res = await fetch("http://localhost:5000/api/auth/login", {  // Correct API path
@@ -20,18 +23,23 @@ export default function Login({ onLogin }) {
         body: JSON.stringify({ email, password }),
       });
 
+
       const data = await res.json();
+
 
       if (!res.ok) {
         throw new Error(data.message || "Login failed");
       }
 
+
       // Save user and token to localStorage for persistence
       localStorage.setItem("user", JSON.stringify(data.user));
       localStorage.setItem("token", data.token);
 
+
       // Update parent user state
       onLogin(data.user);
+
 
       // Redirect to profile page
       navigate("/profile");
@@ -40,11 +48,13 @@ export default function Login({ onLogin }) {
     }
   };
 
+
   return (
     <div className="login-container">
       <form onSubmit={handleLogin}>
         <h2>Login</h2>
         {error && <p className="error-message">{error}</p>}
+
 
         <input
           type="email"
@@ -53,6 +63,7 @@ export default function Login({ onLogin }) {
           onChange={(e) => setEmail(e.target.value)}
           required
         />
+
 
         <div className="password-wrapper" style={{ position: 'relative' }}>
           <input
@@ -71,8 +82,12 @@ export default function Login({ onLogin }) {
           </button>
         </div>
 
+
         <button type="submit" className="login-btn">Login</button>
       </form>
     </div>
   );
 }
+
+
+

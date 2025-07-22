@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css';
 
+
 const Navbar = ({ user, onLogout }) => {
   return (
     <nav className="navbar">
@@ -10,6 +11,7 @@ const Navbar = ({ user, onLogout }) => {
         <Link to="/" className="nav-logo">BRACU BookShare</Link>
       </div>
 
+
       {/* Navigation links */}
       <ul className="nav-links">
         <li><Link to="/">Home</Link></li>
@@ -17,6 +19,7 @@ const Navbar = ({ user, onLogout }) => {
         <li><Link to="/community">Community</Link></li>
         <li><Link to="/about">About</Link></li>
         <li><Link to="/contact">Contact</Link></li>
+
 
         {!user ? (
           <>
@@ -38,4 +41,8 @@ const Navbar = ({ user, onLogout }) => {
   );
 };
 
+
 export default Navbar;
+
+
+
