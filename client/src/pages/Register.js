@@ -20,7 +20,7 @@ export default function Register() {
     }
 
     try {
-      const res = await fetch('http://localhost:5000/api/otp/send-otp', { // Updated path here
+      const res = await fetch('http://localhost:5000/api/otp/send-otp', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
@@ -30,7 +30,7 @@ export default function Register() {
 
       if (res.ok) {
         setMessage(data.message);
-        setStep(2);
+        setStep(2); // move to OTP input
       } else {
         setMessage(data.message || 'Failed to send OTP');
       }
@@ -39,34 +39,21 @@ export default function Register() {
     }
   };
 
-  // Step 2: Verify OTP AND register user
-  const verifyOtpAndRegister = async () => {
+  // Step 2: Register user with OTP
+  const registerWithOtp = async () => {
     if (!otp) {
       setMessage('Please enter the OTP.');
       return;
     }
 
     try {
-      // Verify OTP first
-      let res = await fetch('http://localhost:5000/api/otp/verify-otp', { // Updated path here
+      const res = await fetch('http://localhost:5000/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ otp }),
+        body: JSON.stringify({ name, email, password, otp }),
       });
-      let data = await res.json();
 
-      if (!res.ok) {
-        setMessage(data.message || 'Invalid OTP');
-        return;
-      }
-
-      // OTP verified, now register user
-      res = await fetch('http://localhost:5000/api/auth/register', {  // Updated path here
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, email, password }),
-      });
-      data = await res.json();
+      const data = await res.json();
 
       if (res.ok) {
         setMessage(data.message);
@@ -114,7 +101,7 @@ export default function Register() {
 
       {step === 2 && (
         <>
-          <h2>Verify OTP</h2>
+          <h2>Verify OTP & Register</h2>
           <input
             type="text"
             placeholder="Enter OTP"
@@ -122,8 +109,8 @@ export default function Register() {
             onChange={e => setOtp(e.target.value)}
             style={{ width: '100%', padding: 8, margin: '8px 0' }}
           />
-          <button onClick={verifyOtpAndRegister} style={{ width: '100%', padding: 10 }}>
-            Verify OTP & Register
+          <button onClick={registerWithOtp} style={{ width: '100%', padding: 10 }}>
+            Register
           </button>
         </>
       )}
